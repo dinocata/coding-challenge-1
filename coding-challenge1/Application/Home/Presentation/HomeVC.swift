@@ -1,3 +1,6 @@
+import Foundation
+import CallKit
+
 final class HomeVC: BaseVC<HomeVM> {
     
     override func setupView() {
@@ -10,5 +13,9 @@ final class HomeVC: BaseVC<HomeVM> {
     
     override func bindOutput(_ output: HomeVM.Output) {
         // TODO
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+            AppDelegate.shared.displayIncomingCall(uuid: UUID(), handle: "Test")
+        }
     }
 }

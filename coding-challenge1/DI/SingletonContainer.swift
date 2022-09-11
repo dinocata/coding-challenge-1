@@ -9,6 +9,14 @@ enum SingletonContainer {
             RouterImpl()
         }
         
+        container.register(CallManager.self) { _ in
+            CallManagerImpl()
+        }
+        
+        container.register(ProviderDelegate.self) {
+            ProviderDelegateImpl(callManager: $0.resolve())
+        }
+        
         return container
     }()
 }
